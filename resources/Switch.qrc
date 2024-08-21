@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/style">
+        <file alias="StyleSwitch">style/Switch.qss</file>
+    </qresource>
+
+</RCC>

@@ -1,0 +1,9 @@
+ToggleSwitch{
+    qproperty-colorSwitch: rgba(245, 0, 0, 0.979);
+    qproperty-colorHover: 0;
+    qproperty-minOpacity: 0;
+    qproperty-maxOpacity: 255;
+    qproperty-mincolorHover: 0;
+    qproperty-maxcolorHover: 200;
+    qproperty-maxHoverOpacity: 255;
+}

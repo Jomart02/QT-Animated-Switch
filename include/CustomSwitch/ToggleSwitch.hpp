@@ -9,19 +9,34 @@
 #include <QPainterPath>
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
-
+#include <QFile>
 class ToggleSwitch : public QWidget
 {
         Q_OBJECT
-        Q_PROPERTY(double background READ getBackground WRITE setBackground)
+        Q_PROPERTY(double opacity READ getOpacity WRITE setOpacity)
         Q_PROPERTY(double sliderPos READ getSliderPos WRITE setSliderPos)
         Q_PROPERTY(double colorHover READ getcolorHover WRITE setcolorHover)
+        Q_PROPERTY(QColor colorSwitch READ getcolorSwitch WRITE setcolorSwitch)
+
+        Q_PROPERTY(double maxOpacity READ getmaxOpacity WRITE setmaxOpacity)
+        Q_PROPERTY(double minOpacity READ getmaxOpacity WRITE setmaxOpacity)
+        Q_PROPERTY(double maxHoverOpacity READ getmaxHoverOpacity WRITE setmaxHoverOpacity)
+
+        Q_PROPERTY(double maxcolorHover READ getmaxcolorHover WRITE setmaxcolorHover)
+        Q_PROPERTY(double mincolorHover READ getmincolorHover WRITE setmincolorHover)
+        
     public:
         ToggleSwitch(QWidget* parent = nullptr) : QWidget(parent), m_toggled(false)
         {
             // setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);  // Установим политику изменения размеров виджета
             //  resize(parent->size()); // Установка начального размера равным размеру родительского виджета
             setMouseTracking(true);
+            Q_INIT_RESOURCE(Switch);
+
+            QFile styleFile(":/style/StyleSwitch");
+            bool opened = styleFile.open(QFile::ReadOnly);
+            QString styleContent = styleFile.readAll();
+            setStyleSheet(styleContent);
         }
 
         void paintEvent(QPaintEvent* event) override
@@ -31,7 +46,6 @@ class ToggleSwitch : public QWidget
 
             // Отображение тени
             QPainterPath path;
-            double opacity = background;
 
             path.addRoundedRect(rect().adjusted(3, 3, -3, -3), height() / 2, height() / 2); // Здесь мы создаем скругленный прямоугольник с небольшим смещением
             QColor shadowColor = QColor(0, 0, 0, 50); // Цвет и прозрачность тени
@@ -40,8 +54,11 @@ class ToggleSwitch : public QWidget
 
             // Swhitch
             painter.setPen(Qt::NoPen);  // Добавить обводку можно тут
-            double color = colorHover;
-            painter.setBrush(QColor(65, 80, colorHover, opacity));
+            colorSwitch.setBlue(colorHover);
+            qDebug() << colorHover;
+            colorSwitch.setAlpha(opacity);
+            painter.setBrush(colorSwitch);
+
             // painter.setBrush(m_toggled ? QColor("#4150DE") : QColor("#CECECE"));
             painter.drawRoundedRect(rect(), height() / 2, height() / 2);
 
@@ -117,13 +134,13 @@ class ToggleSwitch : public QWidget
         void startAnimation()
         {
 
-            QPropertyAnimation* ani = new QPropertyAnimation(this, "background");
+            QPropertyAnimation* ani = new QPropertyAnimation(this, "opacity");
             if(m_toggled) {
-                ani->setStartValue(0);
-                ani->setEndValue(255);
+                ani->setStartValue(minOpacity);
+                ani->setEndValue(maxOpacity);
             } else {
-                ani->setStartValue(255);
-                ani->setEndValue(0);
+                ani->setStartValue(maxOpacity);
+                ani->setEndValue(minOpacity);
             }
 
             ani->setDuration(300);
@@ -153,11 +170,11 @@ class ToggleSwitch : public QWidget
             if(m_toggled) {
                 QPropertyAnimation* ani = new QPropertyAnimation(this, "colorHover");
                 if(hovered) {
-                    ani->setStartValue(222);
-                    ani->setEndValue(180);
+                    ani->setStartValue(mincolorHover);
+                    ani->setEndValue(maxcolorHover);
                 } else {
-                    ani->setStartValue(180);
-                    ani->setEndValue(222);
+                    ani->setStartValue(maxcolorHover);
+                    ani->setEndValue(mincolorHover);
                 }
                 ani->setDuration(120);
                 connect(ani, SIGNAL(finished()), ani, SLOT(deleteLater()));
@@ -167,11 +184,11 @@ class ToggleSwitch : public QWidget
                 QPropertyAnimation* ani = new QPropertyAnimation(this, "colorHover");
 
                 if(hovered) {
-                    ani->setStartValue(0);
-                    ani->setEndValue(222);
+                    ani->setStartValue(mincolorHover);
+                    ani->setEndValue(maxcolorHover);
                 } else {
-                    ani->setStartValue(222);
-                    ani->setEndValue(0);
+                    ani->setStartValue(maxcolorHover);
+                    ani->setEndValue(mincolorHover);
                 }
 
                 ani->setDuration(20);
@@ -179,12 +196,12 @@ class ToggleSwitch : public QWidget
                 connect(ani, SIGNAL(valueChanged(const QVariant&)), this, SLOT(update()));
 
 
-                QPropertyAnimation* ani2 = new QPropertyAnimation(this, "background");
+                QPropertyAnimation* ani2 = new QPropertyAnimation(this, "opacity");
                 if(hovered) {
                     ani2->setStartValue(0);
-                    ani2->setEndValue(50);
+                    ani2->setEndValue(maxHoverOpacity);
                 } else {
-                    ani2->setStartValue(50);
+                    ani2->setStartValue(maxHoverOpacity);
                     ani2->setEndValue(0);
                 }
 
@@ -199,13 +216,13 @@ class ToggleSwitch : public QWidget
         }
 
 
-        double getBackground() const
+        double getOpacity() const
         {
-            return background;
+            return opacity;
         }
-        void setBackground(double background)
+        void setOpacity(double background)
         {
-            this->background = background;
+            this->opacity = background;
             update();
         }
         int getSliderPos() const
@@ -226,10 +243,75 @@ class ToggleSwitch : public QWidget
             this->colorHover = colorHover;
             update();
         }
+
+        QColor getcolorSwitch()
+        {
+            return colorSwitch;
+        }
+        void setcolorSwitch(QColor colorSwitch)
+        {
+            this->colorSwitch = colorSwitch;
+            update();
+        }
+
+        double getmaxOpacity()
+        {
+            return maxOpacity;
+        }
+        void setmaxOpacity(double maxOpacity)
+        {
+            this->maxOpacity = maxOpacity;
+            update();
+        }
+
+        double getminOpacity()
+        {
+            return minOpacity;
+        }
+        void setminOpacity(double minOpacity)
+        {
+            this->minOpacity = minOpacity;
+            update();
+        }
+        double getmaxHoverOpacity()
+        {
+            return maxHoverOpacity;
+        }
+        void setmaxHoverOpacity(double maxHoverOpacity)
+        {
+            this->maxHoverOpacity = maxHoverOpacity;
+            update();
+        }
+        double getmaxcolorHover()
+        {
+            return maxcolorHover;
+        }
+        void setmaxcolorHover(double maxcolorHover)
+        {
+            this->maxcolorHover = maxcolorHover;
+            update();
+        }
+        double getmincolorHover()
+        {
+            return mincolorHover;
+        }
+        void setmincolorHover(double mincolorHover)
+        {
+            this->mincolorHover = mincolorHover;
+            update();
+        }
     private:
-        double background = 0;
+        double opacity = 0;
         int slider = 5;
         bool m_toggled;
         bool hovered = false;
-        double colorHover = 255;
+        double colorHover = 0;
+        QColor colorSwitch = QColor(65, 80, 255,100);
+
+
+        double maxOpacity = 255;
+        double minOpacity = 0;
+        double maxcolorHover = 50;
+        double mincolorHover = 0;
+        double maxHoverOpacity = 50;
 };

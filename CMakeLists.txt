@@ -23,7 +23,7 @@ set(SRCS
 )
 
 set(QRCS
-
+    resources/Switch.qrc
 )
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS 
