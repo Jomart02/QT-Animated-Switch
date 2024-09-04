@@ -1,9 +1,19 @@
 ToggleSwitch{
-    qproperty-colorSwitch: rgba(245, 0, 0, 0.979);
+    
+    /*style settings*/
+    qproperty-colorSwitch: rgb(65, 80, 255);
     qproperty-colorHover: 0;
     qproperty-minOpacity: 0;
     qproperty-maxOpacity: 255;
-    qproperty-mincolorHover: 0;
-    qproperty-maxcolorHover: 200;
-    qproperty-maxHoverOpacity: 255;
+    qproperty-mincolorHover: 180;
+    qproperty-maxcolorHover: 222;
+    qproperty-maxHoverOpacity: 50;
+
+    /*animation settings*/
+    qproperty-durationToggledProcces_sliderPos: 300;
+    qproperty-durationToggledHovered: 120;
+    qproperty-durationUnToggledHovered: 20;
+    qproperty-durationToggledHovered_opacity: 120;
+    qproperty-durationToggledProcces_opacity: 300;
+
 }

@@ -25,6 +25,13 @@ class ToggleSwitch : public QWidget
         Q_PROPERTY(double maxcolorHover READ getmaxcolorHover WRITE setmaxcolorHover)
         Q_PROPERTY(double mincolorHover READ getmincolorHover WRITE setmincolorHover)
         
+        Q_PROPERTY(int durationToggledHovered READ getDurationToggledHovered WRITE setDurationToggledHovered)
+        Q_PROPERTY(int durationUnToggledHovered READ getDurationUnToggledHovered WRITE setDurationUnToggledHovered)
+        Q_PROPERTY(int durationToggledHovered_opacity READ getDurationToggledHovered_opacity WRITE setDurationToggledHovered_opacity)
+        Q_PROPERTY(int durationToggledProcces_opacity READ getDurationToggledProcces_opacity  WRITE setDurationToggledProcces_opacity )
+        Q_PROPERTY(int durationToggledProcces_sliderPos READ getDurationToggledProcces_sliderPos WRITE setDurationToggledProcces_sliderPos)
+
+    
     public:
         ToggleSwitch(QWidget* parent = nullptr) : QWidget(parent), m_toggled(false)
         {
@@ -55,7 +62,6 @@ class ToggleSwitch : public QWidget
             // Swhitch
             painter.setPen(Qt::NoPen);  // Добавить обводку можно тут
             colorSwitch.setBlue(colorHover);
-            qDebug() << colorHover;
             colorSwitch.setAlpha(opacity);
             painter.setBrush(colorSwitch);
 
@@ -157,7 +163,7 @@ class ToggleSwitch : public QWidget
                 ani2->setEndValue(5);
             }
 
-            ani2->setDuration(200);
+            ani2->setDuration(durationToggledProcces_sliderPos);
             connect(ani2, SIGNAL(finished()), ani2, SLOT(deleteLater()));
             connect(ani2, SIGNAL(valueChanged(const QVariant&)), this, SLOT(update()));
             ani2->start();
@@ -176,7 +182,7 @@ class ToggleSwitch : public QWidget
                     ani->setStartValue(maxcolorHover);
                     ani->setEndValue(mincolorHover);
                 }
-                ani->setDuration(120);
+                ani->setDuration(durationToggledHovered);
                 connect(ani, SIGNAL(finished()), ani, SLOT(deleteLater()));
                 connect(ani, SIGNAL(valueChanged(const QVariant&)), this, SLOT(update()));
                 ani->start();
@@ -191,7 +197,7 @@ class ToggleSwitch : public QWidget
                     ani->setEndValue(mincolorHover);
                 }
 
-                ani->setDuration(20);
+                ani->setDuration(durationUnToggledHovered);
                 connect(ani, SIGNAL(finished()), ani, SLOT(deleteLater()));
                 connect(ani, SIGNAL(valueChanged(const QVariant&)), this, SLOT(update()));
 
@@ -205,7 +211,7 @@ class ToggleSwitch : public QWidget
                     ani2->setEndValue(0);
                 }
 
-                ani->setDuration(120);
+                ani2->setDuration(durationToggledHovered_opacity);
                 connect(ani2, SIGNAL(finished()), ani2, SLOT(deleteLater()));
                 connect(ani2, SIGNAL(valueChanged(const QVariant&)), this, SLOT(update()));
                 ani->start();
@@ -300,18 +306,76 @@ class ToggleSwitch : public QWidget
             this->mincolorHover = mincolorHover;
             update();
         }
+
+
+///================================================================
+
+
+        int getDurationToggledHovered()
+        {
+            return durationToggledHovered;
+        }
+        void setDurationToggledHovered(int durationToggledHovered)
+        {
+            this->durationToggledHovered = durationToggledHovered;
+        }
+
+        int getDurationUnToggledHovered()
+        {
+            return durationUnToggledHovered;
+        }
+        void setDurationUnToggledHovered(int durationUnToggledHovered)
+        {
+            this->durationUnToggledHovered = durationUnToggledHovered;
+        }
+
+        int getDurationToggledProcces_opacity()
+        {
+            return durationToggledProcces_opacity;
+        }
+        void setDurationToggledProcces_opacity(int durationToggledProcces_opacity)
+        {
+            this->durationToggledProcces_opacity = durationToggledProcces_opacity;
+        }
+
+        int getDurationToggledProcces_sliderPos()
+        {
+            return durationToggledProcces_sliderPos;
+        }
+        void setDurationToggledProcces_sliderPos(int durationToggledProcces_sliderPos)
+        {
+            this->durationToggledProcces_sliderPos = durationToggledProcces_sliderPos;
+        }
+
+        int getDurationToggledHovered_opacity()
+        {
+            return durationToggledHovered_opacity;
+        }
+        void setDurationToggledHovered_opacity(int durationToggledHovered_opacity)
+        {
+            this->durationToggledHovered_opacity = durationToggledHovered_opacity;
+        }
+
     private:
         double opacity = 0;
         int slider = 5;
         bool m_toggled;
         bool hovered = false;
+
+        //Параметры цветовой палитры
         double colorHover = 0;
         QColor colorSwitch = QColor(65, 80, 255,100);
-
-
         double maxOpacity = 255;
         double minOpacity = 0;
-        double maxcolorHover = 50;
-        double mincolorHover = 0;
+        double maxcolorHover = 222;
+        double mincolorHover = 180;
         double maxHoverOpacity = 50;
+
+        //Параметры скорости анимаций
+        int durationToggledHovered = 120; // Скорость анимации наводки при наведении в включенном режиме
+        int durationUnToggledHovered = 20;// Скорость анимации наводки при наведении в выключенном режиме
+        int durationToggledHovered_opacity = 120;
+
+        int durationToggledProcces_opacity = 300; // Скорость анимации отрисовки прозрачности при нажатии на свитч
+        int durationToggledProcces_sliderPos = 300; // Скорость анимации перемещения слайдера при нажатии на свитч
 };
