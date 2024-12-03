@@ -10,6 +10,7 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 #include <QFile>
+
 class ToggleSwitch : public QWidget
 {
         Q_OBJECT
@@ -79,7 +80,6 @@ class ToggleSwitch : public QWidget
         {
             if(event->button() == Qt::LeftButton) {
                 m_toggled = !m_toggled;
-                // update();
                 startAnimation();
                 emit toggledChanged(m_toggled);
             }

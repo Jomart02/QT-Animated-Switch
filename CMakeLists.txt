@@ -8,12 +8,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include/)
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include/CustomSwitch)
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include/TestWindow)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/CustomSwitch)
 
 set(HDRS
     ./include/TestWindow/TestWindow.h
-    ./include/CustomSwitch/ToggleSwitch.hpp
+
 )
 
 set(SRCS
@@ -30,8 +30,9 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS
     ./forms/TestWindow
 )
 
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Designer REQUIRED)
+add_subdirectory(CustomSwitch)
 
 add_executable(${PROJECT_NAME} ${SRCS} ${QRCS} ${HDRS})
 
-target_link_libraries(${PROJECT_NAME} Qt6::Widgets )
+target_link_libraries(${PROJECT_NAME} Qt6::Widgets Qt6::Designer ToggleSwitch)

@@ -23,7 +23,7 @@
   <customwidget>
    <class>ToggleSwitch</class>
    <extends>QWidget</extends>
-   <header>ToggleSwitch.hpp</header>
+   <header location="global">ToggleSwitch.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
