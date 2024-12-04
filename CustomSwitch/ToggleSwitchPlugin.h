@@ -1,16 +1,16 @@
 
 
+
+#pragma once 
 #include <QDesignerCustomWidgetInterface>
-#include <QObject>
-#include "ToggleSwitch.hpp"
-
-
 
 class ToggleSwitchPlugin : public QObject, public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDesignerCustomWidgetInterface")
     Q_INTERFACES(QDesignerCustomWidgetInterface)
+#if QT_VERSION >= 0x050000
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDesignerCustomWidgetInterface" FILE "ToggleSwitchPlugin.json" )
+#endif // QT_VERSION >= 0x050000
 public:
     explicit ToggleSwitchPlugin(QObject *parent = nullptr);
 
