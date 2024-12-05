@@ -32,7 +32,7 @@ find_package(Qt6 COMPONENTS Widgets Core Gui Designer REQUIRED)
 
 
 
-add_library(${PLUGIN} SHARED ${HDRS} ${SRCS})
+add_library(${PLUGIN} SHARED ${HDRS} ${SRCS} ${QRCS})
 
 target_link_libraries(${PLUGIN} Qt6::Widgets Qt6::Designer Qt6::Core Qt6::Gui)
 

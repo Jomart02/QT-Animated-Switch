@@ -2,15 +2,7 @@
 
 ToggleSwitch::ToggleSwitch(QWidget* parent ) : QWidget(parent)
 {
-    // setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);  // Установим политику изменения размеров виджета
-    //  resize(parent->size()); // Установка начального размера равным размеру родительского виджета
     setMouseTracking(true);
-    // Q_INIT_RESOURCE(Switch);
-
-    // QFile styleFile(":/style/StyleSwitch");
-    // bool opened = styleFile.open(QFile::ReadOnly);
-    // QString styleContent = styleFile.readAll();
-    // setStyleSheet(styleContent);
 }
 ToggleSwitch::~ToggleSwitch(){
 

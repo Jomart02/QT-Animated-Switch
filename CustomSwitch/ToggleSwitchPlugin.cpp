@@ -2,6 +2,7 @@
 #include "ToggleSwitch.h"
 
 ToggleSwitchPlugin::ToggleSwitchPlugin(QObject *parent) : QObject(parent){
+    Q_INIT_RESOURCE(res);
     initialized = false;
 }
 
@@ -15,23 +16,33 @@ QIcon ToggleSwitchPlugin::icon() const {
     return QIcon(":/icon/switch");
 };
 QString ToggleSwitchPlugin::domXml() const {
-    return QLatin1String("<ui language=\"c++\"><widget class=\"ToggleSwitch\" name=\"Switch\"><property name=\"geometry\"><rect><x>0</x><y>0</y><width>100</width><height>24</height></rect></property></widget></ui>");
+    QFile File(":/xml/switchxml");
+    bool opened = File.open(QFile::ReadOnly);
+
+    if(opened){
+        qDebug() << "opem";
+        QString xml = File.readAll();
+        return QString(xml);
+    }else{
+        return QString("<ui language=\"c++\"><widget class=\"ToggleSwitch\" name=\"Switch\"><property name=\"geometry\"><rect><x>0</x><y>0</y><width>100</width><height>24</height></rect></property></widget></ui>");
+    }
+
 
 };
 QString ToggleSwitchPlugin::group() const {
-    return QLatin1String("Buttons");
+    return QString("Buttons");
 };
 QString ToggleSwitchPlugin::includeFile() const {
     return QString("ToggleSwitch.h");
 };
 QString ToggleSwitchPlugin::name() const {
-    return QLatin1String("ToggleSwitch");
+    return QString("ToggleSwitch");
 }
 QString ToggleSwitchPlugin::toolTip() const {
-    return QLatin1String("");
+    return QString("");
 };
 QString ToggleSwitchPlugin::whatsThis() const {
-    return QLatin1String("");
+    return QString("");
 };
 QWidget *ToggleSwitchPlugin::createWidget(QWidget *parent) {
     return new ToggleSwitch(parent);

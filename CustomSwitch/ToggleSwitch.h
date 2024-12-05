@@ -108,12 +108,12 @@ class QDESIGNER_WIDGET_EXPORT ToggleSwitch : public QWidget
     private:
         double opacity = 0;
         int slider = 5;
-        bool m_toggled;
+        bool m_toggled = false;
         bool hovered = false;
 
         //Параметры цветовой палитры
-        double colorHover = 0;
-        QColor colorSwitch = QColor(65, 80, 255,100);
+        double colorHover = 180;
+        QColor colorSwitch = QColor(65, 80, 180,0);
         double maxOpacity = 255;
         double minOpacity = 0;
         double maxcolorHover = 222;

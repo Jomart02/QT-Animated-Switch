@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>472</width>
+    <width>1060</width>
     <height>325</height>
    </rect>
   </property>
@@ -16,24 +16,15 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="ToggleSwitch" name="Switch">
-     <property name="sliderPos">
-      <double>152.000000000000000</double>
+     <property name="toggled">
+      <bool>false</bool>
      </property>
-     <property name="colorHover" stdset="0">
-      <double>180.000000000000000</double>
-     </property>
-     <property name="colorSwitch" stdset="0">
-      <color>
-       <red>255</red>
-       <green>38</green>
-       <blue>180</blue>
-      </color>
-     </property>
-     <property name="mincolorHover" stdset="0">
-      <double>180.000000000000000</double>
-     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="ToggleSwitch" name="Switch_2">
      <property name="durationToggledProcces_sliderPos">
-      <number>132</number>
+      <number>100</number>
      </property>
      <property name="toggled">
       <bool>true</bool>

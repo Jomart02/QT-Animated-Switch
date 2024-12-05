@@ -18,7 +18,6 @@ A visually appealing and interactive switch widget that can be turned on or off 
 ## QSS properties
 The switch class has a set of properties with which you can use your own style sheet to customize the style and speed of animations
 
-
 ### Style properties
 ```css
 ToggleSwitch{
