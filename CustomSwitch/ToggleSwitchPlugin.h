@@ -9,7 +9,7 @@ class ToggleSwitchPlugin : public QObject, public QDesignerCustomWidgetInterface
     Q_OBJECT
     Q_INTERFACES(QDesignerCustomWidgetInterface)
 #if QT_VERSION >= 0x050000
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDesignerCustomWidgetInterface" FILE "ToggleSwitchPlugin.json" )
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDesignerCustomWidgetInterface" )
 #endif // QT_VERSION >= 0x050000
 public:
     explicit ToggleSwitchPlugin(QObject *parent = nullptr);

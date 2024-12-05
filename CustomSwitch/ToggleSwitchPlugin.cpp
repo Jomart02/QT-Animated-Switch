@@ -15,7 +15,7 @@ QIcon ToggleSwitchPlugin::icon() const {
     return QIcon(":/icon/switch");
 };
 QString ToggleSwitchPlugin::domXml() const {
-    return QString("<ui language=\"c++\"><widget class=\"ToggleSwitch\" name=\"ToggleSwitch\"><header>ToggleSwitch.h</header><property name=\"geometry\"><rect><x>0</x><y>0</y><width>100</width><height>24</height></rect></property></widget></ui>");
+    return QLatin1String("<ui language=\"c++\"><widget class=\"ToggleSwitch\" name=\"Switch\"><property name=\"geometry\"><rect><x>0</x><y>0</y><width>100</width><height>24</height></rect></property></widget></ui>");
 
 };
 QString ToggleSwitchPlugin::group() const {

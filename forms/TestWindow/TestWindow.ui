@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>99</height>
+    <width>472</width>
+    <height>325</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,30 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="ToggleSwitch" name="widget" native="true"/>
+    <widget class="ToggleSwitch" name="Switch">
+     <property name="sliderPos">
+      <double>152.000000000000000</double>
+     </property>
+     <property name="colorHover" stdset="0">
+      <double>180.000000000000000</double>
+     </property>
+     <property name="colorSwitch" stdset="0">
+      <color>
+       <red>255</red>
+       <green>38</green>
+       <blue>180</blue>
+      </color>
+     </property>
+     <property name="mincolorHover" stdset="0">
+      <double>180.000000000000000</double>
+     </property>
+     <property name="durationToggledProcces_sliderPos">
+      <number>132</number>
+     </property>
+     <property name="toggled">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -23,8 +46,7 @@
   <customwidget>
    <class>ToggleSwitch</class>
    <extends>QWidget</extends>
-   <header location="global">ToggleSwitch.hpp</header>
-   <container>1</container>
+   <header>ToggleSwitch.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

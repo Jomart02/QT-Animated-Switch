@@ -1,5 +1,5 @@
 <ui language="c++">
-  <widget class="ToggleSwitch" name="ToggleSwitch">
+  <widget class="ToggleSwitch" name="Switch">
     <property name="geometry">
       <rect>
         <x>0</x>

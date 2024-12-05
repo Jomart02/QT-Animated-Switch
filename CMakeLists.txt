@@ -35,4 +35,4 @@ add_subdirectory(CustomSwitch)
 
 add_executable(${PROJECT_NAME} ${SRCS} ${QRCS} ${HDRS})
 
-target_link_libraries(${PROJECT_NAME} Qt6::Widgets Qt6::Designer ToggleSwitch)
+target_link_libraries(${PROJECT_NAME} Qt6::Widgets Qt6::Designer ToggleSwitchPlugin )

@@ -55,6 +55,16 @@ ToggleSwitch{
 }
 ```
 
+# Build plugin
+```
+mkdir build
+cd build
+cmake ..
+cmake --build . --target install ToggleSwitchPlugin  -j 8    
+```
+
+After the build and installation of the plugin, this build is not required
+
 # Build Windows (msvc)
 ```
 mkdir build
@@ -67,5 +77,5 @@ cmake --build . --config Release -j 10
 mkdir build
 cd build
 cmake ..
-make -j 10
+make -j 10 ( or cmake --build . --config Release -j 10)
 ```
