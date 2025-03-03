@@ -15,23 +15,23 @@
 class QDESIGNER_WIDGET_EXPORT ToggleSwitch : public QWidget
 {
         Q_OBJECT
-        Q_PROPERTY(double opacity READ getOpacity WRITE setOpacity)
-        Q_PROPERTY(double sliderPos READ getSliderPos WRITE setSliderPos)
-        Q_PROPERTY(double colorHover READ getcolorHover WRITE setcolorHover)
-        Q_PROPERTY(QColor colorSwitch READ getcolorSwitch WRITE setcolorSwitch)
+        Q_PROPERTY(double opacity READ getOpacity WRITE setOpacity DESIGNABLE false)
+        Q_PROPERTY(double sliderPos READ getSliderPos WRITE setSliderPos DESIGNABLE false)
+        Q_PROPERTY(double colorHover READ getcolorHover WRITE setcolorHover DESIGNABLE false)
+        Q_PROPERTY(QColor colorSwitch READ getcolorSwitch WRITE setcolorSwitch DESIGNABLE false)
 
-        Q_PROPERTY(double maxOpacity READ getmaxOpacity WRITE setmaxOpacity)
-        Q_PROPERTY(double minOpacity READ getmaxOpacity WRITE setmaxOpacity)
-        Q_PROPERTY(double maxHoverOpacity READ getmaxHoverOpacity WRITE setmaxHoverOpacity)
+        Q_PROPERTY(double maxOpacity READ getmaxOpacity WRITE setmaxOpacity DESIGNABLE false)
+        Q_PROPERTY(double minOpacity READ getmaxOpacity WRITE setmaxOpacity DESIGNABLE false)
+        Q_PROPERTY(double maxHoverOpacity READ getmaxHoverOpacity WRITE setmaxHoverOpacity DESIGNABLE false)
 
-        Q_PROPERTY(double maxcolorHover READ getmaxcolorHover WRITE setmaxcolorHover)
-        Q_PROPERTY(double mincolorHover READ getmincolorHover WRITE setmincolorHover)
+        Q_PROPERTY(double maxcolorHover READ getmaxcolorHover WRITE setmaxcolorHover DESIGNABLE false)
+        Q_PROPERTY(double mincolorHover READ getmincolorHover WRITE setmincolorHover DESIGNABLE false)
         
-        Q_PROPERTY(int durationToggledHovered READ getDurationToggledHovered WRITE setDurationToggledHovered)
-        Q_PROPERTY(int durationUnToggledHovered READ getDurationUnToggledHovered WRITE setDurationUnToggledHovered)
-        Q_PROPERTY(int durationToggledHovered_opacity READ getDurationToggledHovered_opacity WRITE setDurationToggledHovered_opacity)
-        Q_PROPERTY(int durationToggledProcces_opacity READ getDurationToggledProcces_opacity  WRITE setDurationToggledProcces_opacity )
-        Q_PROPERTY(int durationToggledProcces_sliderPos READ getDurationToggledProcces_sliderPos WRITE setDurationToggledProcces_sliderPos)
+        Q_PROPERTY(int durationToggledHovered READ getDurationToggledHovered WRITE setDurationToggledHovered DESIGNABLE false)
+        Q_PROPERTY(int durationUnToggledHovered READ getDurationUnToggledHovered WRITE setDurationUnToggledHovered DESIGNABLE false)
+        Q_PROPERTY(int durationToggledHovered_opacity READ getDurationToggledHovered_opacity WRITE setDurationToggledHovered_opacity DESIGNABLE false)
+        Q_PROPERTY(int durationToggledProcces_opacity READ getDurationToggledProcces_opacity  WRITE setDurationToggledProcces_opacity  DESIGNABLE false)
+        Q_PROPERTY(int durationToggledProcces_sliderPos READ getDurationToggledProcces_sliderPos WRITE setDurationToggledProcces_sliderPos DESIGNABLE false)
         Q_PROPERTY(bool toggled READ isToggled WRITE setToggled NOTIFY toggledChanged)
     
     public:
